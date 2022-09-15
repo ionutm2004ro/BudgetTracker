@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Transaction>
+@{
+    ViewData["Title"] = "Transaction Table";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Transaction List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Transaction" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Add New Transaction
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Note</th>
+                <th>Date</th>
+                <th>Currency</th>
+                <th>Category</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model)
+            {
+                <tr>
+                    <td>@t.Value</td>
+                    <td>@t.Note</td>
+                    <td>@t.Date</td>
+                    <td>@t.Currency</td>
+                    <td>@t.Category</td>
+                    <td><button type="submit" class="btn btn-primary" style="width:150px">
+                            <i class="bi bi-pencil"></i> &nbsp; Update
+                        </button></td>
+                    <td><button type="submit" class="btn btn-warning" style="width:150px">
+                            <i class="bi bi-eraser"></i> &nbsp; Delete
+                        </button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
