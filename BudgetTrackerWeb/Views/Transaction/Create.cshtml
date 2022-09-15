@@ -9,10 +9,27 @@
         <div class="mb-3">
             <label asp-for="Value"></label>
             <input asp-for="Value" class="form-control" />
+            <span asp-validation-for="Value" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Note"></label>
-            <input asp-for="Note" class="form-control"/>
+            <input asp-for="Note" class="form-control" />
+            <span asp-validation-for="Note" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Date"></label>
+            <input asp-for="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Currency"></label>
+            <input asp-for="Currency" class="form-control" />
+            <span asp-validation-for="Currency" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Category"></label>
+            <input asp-for="Category" class="form-control" />
+            <span asp-validation-for="Category" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
         <a asp-controller="Transaction" asp-action="Index" class="btn btn-secondary" style="width:150px">

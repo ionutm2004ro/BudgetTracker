@@ -25,5 +25,19 @@ namespace BudgetTrackerWeb.Controllers
 
             return View();
         }
+
+        //Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Transaction obj)
+        {
+            if(ModelState.IsValid)
+            {
+                _db.Transactions.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
 }
