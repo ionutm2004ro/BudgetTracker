@@ -9,5 +9,6 @@ namespace BudgetTrackerWeb.Data
         {
         }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<BudgetTrackerWeb.Models.Currency>? Currency { get; set; }
     }
 }

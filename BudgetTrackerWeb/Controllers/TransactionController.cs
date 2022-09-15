@@ -1,6 +1,7 @@
 ﻿using BudgetTrackerWeb.Data;
 using BudgetTrackerWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BudgetTrackerWeb.Controllers
 {
@@ -16,13 +17,14 @@ namespace BudgetTrackerWeb.Controllers
         public IActionResult Index()
         {
             IEnumerable<Transaction> objTransactionList = _db.Transactions;
+            ViewBag.Currencies = _db.Currency;
             return View(objTransactionList);
         }
 
         //GET
         public IActionResult Create()
         {
-
+            ViewBag.Currencies = _db.Currency;
             return View();
         }
 
@@ -58,6 +60,7 @@ namespace BudgetTrackerWeb.Controllers
                 return NotFound();
             }
 
+            ViewBag.Currencies = _db.Currency;
             return View(transactionFromDb);
         }
 
@@ -77,6 +80,7 @@ namespace BudgetTrackerWeb.Controllers
                 TempData["success"] = "Transaction updated successfully!";
                 return RedirectToAction("Index");
             }
+            ViewBag.Currencies = _db.Currency;
             return View(obj);
         }
 

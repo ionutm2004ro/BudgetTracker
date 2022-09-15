@@ -9,10 +9,22 @@
             <h2 class="text-primary">Transaction List</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Transaction" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Add New Transaction
-            </a>
-        </div>
+            @if (ViewBag.Currencies != null)
+            {
+                <a asp-controller="Transaction" asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Add New Transaction
+                </a>
+            }else
+            {
+                <div class="text-end">
+                    <a asp-controller="Currencies" asp-action="Create" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> &nbsp; Add New Currency
+                    </a>
+                </div>
+                <div class="alert alert-warning" role="alert">
+                    You need to have at least one currency before adding a transaction!
+                </div>
+            }
     </div>
 
     <table class="table table-bordered table-striped" style="width:100%">
@@ -38,7 +50,7 @@
                     <td>
                         <div class="w-100 btn-group" role="group">
                             <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@t.Id"
-                            class="btn btn-primary mx-2">
+                               class="btn @(@ViewBag.Currencies != null ? "btn-primary" : "btn-dark disabled") mx-2">
                                 <i class="bi bi-pencil"></i> &nbsp; Edit
                             </a>
                             <a asp-controller="Transaction" asp-action="Delete" asp-route-id="@t.Id"

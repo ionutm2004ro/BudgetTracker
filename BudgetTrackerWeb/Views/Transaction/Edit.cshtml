@@ -24,8 +24,9 @@
         </div>
         <div class="mb-3">
             <label asp-for="Currency"></label>
-            <input asp-for="Currency" class="form-control" />
-            <span asp-validation-for="Currency" class="text-danger"></span>
+            <select class="form-select" asp-for="Currency"
+                asp-items="@(new SelectList(ViewBag.Currencies, nameof(Currency.Name), nameof(Currency.Name)))">
+            </select>
         </div>
         <div class="mb-3">
             <label asp-for="Category"></label>
