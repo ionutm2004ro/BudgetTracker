@@ -31,13 +31,85 @@ namespace BudgetTrackerWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Transaction obj)
         {
-            if(ModelState.IsValid)
+            if (obj.Date > DateTime.Now)
+            {
+                ModelState.AddModelError("Date", "The Date selected is in the future");
+            }
+            if (ModelState.IsValid)
             {
                 _db.Transactions.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Transaction created successfully!";
                 return RedirectToAction("Index");
             }
             return View(obj);
+        }
+
+        //GET
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var transactionFromDb = _db.Transactions.Find(id);
+            if (transactionFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(transactionFromDb);
+        }
+
+        //Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Transaction obj)
+        {
+            if (obj.Date > DateTime.Now)
+            {
+                ModelState.AddModelError("Date", "The Date selected is in the future");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Transactions.Update(obj);
+                _db.SaveChanges();
+                TempData["success"] = "Transaction updated successfully!";
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+        //GET
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var transactionFromDb = _db.Transactions.Find(id);
+            if (transactionFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(transactionFromDb);
+        }
+
+        //Post
+        [HttpPost,ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePOST(int? id)
+        {
+            var obj = _db.Transactions.Find(id);
+            if (obj == null) {
+                return NotFound();
+            }
+
+            _db.Transactions.Remove(obj);
+            _db.SaveChanges();
+            TempData["success"] = "Transaction removed successfully!";
+            return RedirectToAction("Index");
         }
     }
 }

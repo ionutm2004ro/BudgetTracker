@@ -1,38 +1,39 @@
 ﻿@model Transaction
 
-<form method="post">
+<form method="post" asp-action="Delete">
+    <input asp-for="Id" hidden />
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Create Transaction</h2>
+            <h2 class="text-primary">Delete Transaction</h2>
             <hr />
         </div>
         <div asp-validation-summary="All"></div>
         <div class="mb-3">
             <label asp-for="Value"></label>
-            <input asp-for="Value" class="form-control" />
+            <input asp-for="Value" disabled class="form-control" />
             <span asp-validation-for="Value" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Note"></label>
-            <input asp-for="Note" class="form-control" />
+            <input asp-for="Note" disabled class="form-control" />
             <span asp-validation-for="Note" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Date"></label>
-            <input asp-for="Date" class="form-control" />
+            <input asp-for="Date" disabled class="form-control" />
             <span asp-validation-for="Date" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Currency"></label>
-            <input asp-for="Currency" class="form-control" />
+            <input asp-for="Currency" disabled class="form-control" />
             <span asp-validation-for="Currency" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Category"></label>
-            <input asp-for="Category" class="form-control" />
+            <input asp-for="Category" disabled class="form-control" />
             <span asp-validation-for="Category" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
         <a asp-controller="Transaction" asp-action="Index" class="btn btn-secondary" style="width:150px">
             Cancel
         </a>
