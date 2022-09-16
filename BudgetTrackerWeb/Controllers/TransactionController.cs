@@ -44,6 +44,7 @@ namespace BudgetTrackerWeb.Controllers
                 TempData["success"] = "Transaction created successfully!";
                 return RedirectToAction("Index");
             }
+            ViewBag.Currencies = _db.Currency;
             return View(obj);
         }
 
