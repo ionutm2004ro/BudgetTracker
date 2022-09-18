@@ -31,10 +31,10 @@
         <thead>
             <tr>
                 <th>Value</th>
-                <th>Note</th>
-                <th>Date</th>
                 <th>Currency</th>
+                <th>Note</th>
                 <th>Category</th>
+                <th>Date</th>
                 <th></th>
             </tr>
         </thead>
@@ -43,10 +43,10 @@
             {
                 <tr>
                     <td>@t.Value</td>
-                    <td>@t.Note</td>
-                    <td>@t.Date</td>
                     <td>@t.Currency</td>
+                    <td>@t.Note</td>
                     <td>@t.Category</td>
+                    <td>@t.Date</td>
                     <td>
                         <div class="w-100 btn-group" role="group">
                             <a asp-controller="Transaction" asp-action="Edit" asp-route-id="@t.Id"
